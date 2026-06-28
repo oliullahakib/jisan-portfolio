@@ -45,7 +45,7 @@ export default function Hero() {
         </div>
 
         {/* Central Display Section */}
-        <div className="relative w-full flex flex-col md:flex-row items-center justify-between gap-12 mt-8">
+        <div className="relative w-full flex flex-col md:flex-row items-center justify-between  md:gap-12 mt-8">
 
           {/* Left testimonial element */}
           <div className="w-full hidden md:w-1/4 lg:flex justify-center md:justify-start order-2 md:order-1">
