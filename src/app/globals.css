@@ -24,8 +24,14 @@
   50% { transform: translateY(-10px); }
 }
 @keyframes wave {
-  0%, 100% { transform: rotateY(0deg); }
-  50% { transform: rotateY(40deg); }
+  0% { transform: rotate( 0.0deg) }
+  10% { transform: rotate(14.0deg) }
+  20% { transform: rotate(-8.0deg) }
+  30% { transform: rotate(14.0deg) }
+  40% { transform: rotate(-4.0deg) }
+  50% { transform: rotate(10.0deg) }
+  60% { transform: rotate( 0.0deg) }
+  100% { transform: rotate( 0.0deg) }
 }
 @keyframes float-delayed {
   0%, 100% { transform: translateY(0px); }
@@ -78,3 +84,9 @@ body {
   background-size: 16px 16px;
   background-position: 0 0, 8px 8px;
 }
+
+/* Waving hand transform origin */
+.animate-wave {
+  transform-origin: 70% 70%;
+}
+
