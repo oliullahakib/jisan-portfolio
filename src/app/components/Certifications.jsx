@@ -7,21 +7,25 @@ const certifications = [
     title: "Business Communication ",
     issuer: "HP LIFE",
     image: "https://media.licdn.com/dms/image/v2/D562DAQGxVFoAXq5hRw/profile-treasury-image-shrink_8192_8192/B56Zx.2p13HgAg-/0/1771654783442?e=1783306800&v=beta&t=xv_MzCe0JL0T_hP-EAJ9-5dv4UUvOAWWmx-UYfXunNs",
+    skills: "Business communication"
   },
   {
     title: "Human Resource Management ",
     issuer: "UniAthena",
     image: "https://media.licdn.com/dms/image/v2/D562DAQEXWXj6d4Lc8g/profile-treasury-image-shrink_480_480/B56Zx.1owJKgAM-/0/1771654517336?e=1783306800&v=beta&t=BSO_Az6k36n1tG_8gg8E_lsik-fXLBTwHZ0JxKoPkvI",
+    skills: "Human Resource Management"
   },
   {
     title: "Critical Thinking in AI Era",
     issuer: "HP LIFE",
     image: "https://media.licdn.com/dms/image/v2/D562DAQGcgXS8vnPvPA/profile-treasury-image-shrink_480_480/B56Zx.2c68JQAM-/0/1771654731124?e=1783306800&v=beta&t=meyDV6F6mEMTJeKlxA6MGBgbGYuI2UbGtFyZod-ptJM",
+    skills: "Critical Thinking"
   },
   {
-    title: "Critical Thinking in AI Era",
-    issuer: "HP LIFE",
-    image: "https://media.licdn.com/dms/image/v2/D562DAQGcgXS8vnPvPA/profile-treasury-image-shrink_480_480/B56Zx.2c68JQAM-/0/1771654731124?e=1783306800&v=beta&t=meyDV6F6mEMTJeKlxA6MGBgbGYuI2UbGtFyZod-ptJM",
+    title: "Basics of Digital Marketing",
+    issuer: "UniAthena",
+    image: "/image/certifications/uniAthena_marketing.png",
+    skill:"Digital Marketing"
   },
 ];
 
@@ -217,6 +221,7 @@ function CertCard({ cert, onClick }) {
           <p className="text-sm text-left" style={{ color: "#888" }}>
             {cert.issuer}
           </p>
+          <p><span className="font-bold">Skill:</span>{cert?.skills}</p>
         </div>
         {/* download button */}
         <button
@@ -224,7 +229,7 @@ function CertCard({ cert, onClick }) {
             e.stopPropagation();
             downloadImage(cert);
           }}
-          className="flex items-center justify-center rounded-full transition-colors duration-300 cursor-pointer w-10 h-10 bg-primary/80 flex-shrink-0"
+          className="flex items-center justify-center rounded-full transition-colors duration-300 cursor-pointer w-10 h-10 bg-primary/80 shrink-0"
           aria-label={`Download ${cert.title}`}
         >
           <div className="rotate-135">
@@ -299,7 +304,7 @@ const Certifications = () => {
           {certifications.map((cert, i) => (
             <div
               key={i}
-              className="px-4 flex-shrink-0"
+              className="px-4 shrink-0"
               style={{
                 width: `${100 / visibleCount}%`,
               }}
