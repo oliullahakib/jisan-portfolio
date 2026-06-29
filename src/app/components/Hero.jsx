@@ -30,7 +30,7 @@ export default function Hero() {
             <path strokeLinecap="round" d="M10,25 Q15,10 25,12 T35,30" />
           </svg>
 
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-dark-charcoal leading-tight select-none">
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-dark-charcoal leading-tight select-none">
             I&apos;m <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-[#ff5a00]">Jisan</span>
             <span className="inline-block animate-wave mx-2">👋</span>,
             <br />
@@ -109,7 +109,7 @@ export default function Hero() {
 
             {/* FLOATING TAGS AROUND PORTRAIT */}
             {/* Floating Tag 1: Marketing (📣) - Top-Left */}
-            <div className="absolute top-[20%] left-[-0%] sm:left-[5%] md:left-[-10%] lg:left-[0%] animate-float">
+            <div className="absolute top-[20%] left-[-5%] sm:left-[5%] md:left-[-10%] lg:left-[0%] animate-float">
               <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-dark-charcoal shadow-lg text-xs md:text-sm font-semibold border border-white/10 hover:scale-105 hover:-rotate-2 transition-all duration-300">
                 <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clipRule="evenodd" />
@@ -119,7 +119,7 @@ export default function Hero() {
             </div>
 
             {/* Floating Tag 2: Brand (🌟) - Bottom-Left */}
-            <div className="absolute bottom-[20%] left-[-0%] sm:left-[0%] md:left-[-15%] lg:left-[-0%] animate-float-delayed">
+            <div className="absolute bottom-[25%] left-[-0%] sm:left-[0%] md:left-[-15%] lg:left-[-0%] animate-float-delayed">
               <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-dark-charcoal shadow-lg text-xs md:text-sm font-semibold border border-white/10 hover:scale-105 hover:rotate-3 transition-all duration-300">
                 <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -129,7 +129,7 @@ export default function Hero() {
             </div>
 
             {/* Floating Tag 3: Ads (🚀) - Mid-Right */}
-            <div className="absolute top-[15%] right-[10%] sm:right-[5%] md:right-[-10%] lg:right-[5%] animate-float-delayed">
+            <div className="absolute top-[15%] right-[5%] sm:right-[5%] md:right-[-10%] lg:right-[5%] animate-float-delayed">
               <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-dark-charcoal shadow-lg text-xs md:text-sm font-semibold border border-white/10 hover:scale-105 hover:rotate-2 transition-all duration-300">
                 <svg className="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />

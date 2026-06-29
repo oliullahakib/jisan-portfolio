@@ -280,13 +280,13 @@ const Certifications = () => {
 
   return (
     <section
-      className="w-full px-6 md:px-16 lg:px-24 "
+      className="w-full px-6 md:px-16 lg:px-24 py-20"
       style={{ background: "#faf9f6" }}
     >
       {/* Top label */}
       <div className="flex flex-col items-center mb-4">
        <h2
-          className="text-5xl md:text-6xl font-black text-center tracking-tight mb-5"
+          className="text-4xl md:text-5xl font-black text-center tracking-tight mb-5"
           style={{ color: "#111" }}
         >
           <span style={{ color: "#ff7a1a" }}>*</span>Licenses & Certifications.
@@ -316,7 +316,7 @@ const Certifications = () => {
       </div>
 
       {/* Divider + Navigation arrows */}
-      <div className="max-w-6xl mx-auto flex items-center justify-between pt-6 border-t border-gray-200 pb-16">
+      <div className="max-w-6xl mx-auto flex items-center justify-between pt-6 border-t border-gray-200">
         <div />
         <div className="flex items-center gap-3">
           <button

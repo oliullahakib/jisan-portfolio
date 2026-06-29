@@ -177,16 +177,16 @@ function ToolCard({ group }) {
 const Skill = () => {
   return (
     <section
-      className="w-full px-6 md:px-16 lg:px-24 py-16"
+      className="w-full px-6 md:px-16 lg:px-24 py-20"
       style={{ background: "#faf9f6", fontFamily: "var(--font-sans, sans-serif)" }}
     >
       {/* ── SKILLS HEADING ── */}
       <div className="flex flex-col items-center mb-10">
         <h2
-          className="text-5xl md:text-6xl font-black text-center tracking-tight mb-5"
+          className="text-5xl md:text-6xl font-black text-center tracking-tight mb-10"
           style={{ color: "#111" }}
         >
-          <span style={{ color: "#ff7a1a" }}>*</span>skills.
+          <span style={{ color: "#ff7a1a" }}>*</span>Skills.
         </h2>
         {/* Skill tags */}
         <div className="flex flex-wrap justify-center gap-2 max-w-[60vw] mx-auto">

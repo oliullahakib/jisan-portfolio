@@ -1,6 +1,7 @@
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skill from "./components/Skill";
+import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Certifications from "./components/Certifications";
 
@@ -12,6 +13,7 @@ export default function Home() {
       <Skill />
       <Education/>
       <Certifications />
+      <Experience />
     </main>
   );
 }

@@ -17,16 +17,18 @@ const Education = () => {
       className="w-full px-6 md:px-16 lg:px-24 "
       style={{ background: "#faf9f6" }}
     >
-      {/* Heading */}
-      <h2
-        className="text-4xl md:text-5xl font-extrabold text-center mb-16"
-        style={{ color: "#111", letterSpacing: "-0.5px" }}
-      >
-        Education
-      </h2>
+        {/* Top label */}
+      <div className="flex flex-col items-center mb-4">
+       <h2
+          className="text-4xl md:text-5xl font-black text-center tracking-tight mb-5"
+          style={{ color: "#111" }}
+        >
+          <span style={{ color: "#ff7a1a" }}>*</span>Education.
+        </h2>
+      </div>
 
       {/* Timeline */}
-      <div className="max-w-[60vw] mx-auto flex flex-col">
+      <div className="max-w-[40vw] mx-auto flex flex-col">
         {educationData.map((item, index) => (
           <div key={index} className="flex items-start gap-0">
             {/* Dot + vertical line */}
