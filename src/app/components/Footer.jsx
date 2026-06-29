@@ -5,7 +5,7 @@ import { useCallback } from "react";
 const socialLinks = [
   {
     name: "LinkedIn",
-    url: "https://linkedin.com",
+    url: "https://www.linkedin.com/in/nahid-ahmed-jisan-812a44354/",
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -73,7 +73,7 @@ export default function Footer() {
             </p>
           </div>
           <a
-            href="mailto:contact@jisan.com"
+            href="mailto:mkt.nahidahmed@gmail.com "
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-bold border-2 border-black transition-all cursor-pointer shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-primary active:translate-y-0.5 active:shadow-[1px_1px_0px_rgba(0,0,0,1)] w-fit h-fit"
           >
             Get In Touch
