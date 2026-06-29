@@ -2,6 +2,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Skill from "./components/Skill";
 import Education from "./components/Education";
+import Certifications from "./components/Certifications";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <About />
       <Skill />
       <Education/>
+      <Certifications />
     </main>
   );
 }
