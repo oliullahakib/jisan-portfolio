@@ -151,20 +151,17 @@ export default function About() {
                 <Highlight>marketing &amp; digital communication</Highlight>.
               </p>
             </div>
-
-           
-
           </div>
 
           {/* ════════════════════════════════════════
               RIGHT — portrait with semicircle
           ════════════════════════════════════════ */}
         <Image 
-        src="https://media.licdn.com/dms/image/v2/D4E03AQGHk8Mb4WVN4Q/profile-displayphoto-shrink_800_800/B4EZcTQyQ3HYAk-/0/1748374858746?e=1784160000&v=beta&t=kJDxTIzXNKvXsCMvDgjRNkjDK5yzWJ6As3S2GlvqWTg" 
+        src="/image/about/potrait.jpeg" 
         width={400} 
         height={560} 
         alt="Jisan - Marketing Student" 
-        className="rounded-full"
+        className="rounded-full w-md"
         />
 
         </div>
