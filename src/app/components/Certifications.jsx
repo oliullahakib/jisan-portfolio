@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
+
 const certifications = [
   {
     title: "Business Communication ",
@@ -59,11 +61,119 @@ function CheckIcon() {
   );
 }
 
-function CertCard({ cert }) {
+/* ── Shared download helper ── */
+async function downloadImage(cert) {
+  try {
+    const response = await fetch(cert.image);
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${cert.title.trim().replace(/\s+/g, "_")}_certificate.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch {
+    window.open(cert.image, "_blank");
+  }
+}
+
+function DownloadIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  );
+}
+
+/* ── Modal ── */
+function ImageModal({ cert, onClose }) {
+  // Close on Escape key
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === "Escape") onClose();
+    },
+    [onClose]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [handleKeyDown]);
+
+  const handleDownload = (e) => {
+    e.stopPropagation();
+    downloadImage(cert);
+  };
+
   return (
     <div
-      className="relative group rounded-2xl overflow-hidden"
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ background: "rgba(0, 0, 0, 0.85)" }}
+      onClick={onClose}
+    >
+      {/* Close button – top right */}
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-colors duration-200"
+        style={{ background: "rgba(255,255,255,0.15)", color: "#fff" }}
+        aria-label="Close modal"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      {/* Image container */}
+      <div
+        className="relative max-w-4xl w-[90vw] max-h-[85vh]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={cert.image}
+          alt={cert.title}
+          className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
+        />
+
+        {/* Download button – bottom right */}
+        <button
+          onClick={handleDownload}
+          className="absolute bottom-0 -right-20 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer transition-all duration-200 hover:scale-105"
+          style={{ background: "#ff7a1a", color: "#fff", border: "none" }}
+          aria-label="Download image"
+        >
+          <DownloadIcon />
+          Download
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ── Card ── */
+function CertCard({ cert, onClick }) {
+  return (
+    <div
+      className="relative group rounded-2xl overflow-hidden cursor-pointer"
       style={{ background: "#fff" }}
+      onClick={() => onClick(cert)}
     >
       {/* Lime accent tab behind card */}
       <div
@@ -93,11 +203,14 @@ function CertCard({ cert }) {
             {cert.issuer}
           </p>
         </div>
-        {/* dwonlod button  */}
+        {/* download button  */}
         <button
+          onClick={(e) => {
+            e.stopPropagation();
+            downloadImage(cert);
+          }}
           className="flex items-center justify-center rounded-full transition-colors duration-300 cursor-pointer w-10 h-10 bg-primary/80"
-         
-          aria-label={`View ${cert.title}`}
+          aria-label={`Download ${cert.title}`}
         >
           <div className="rotate-135">
             <ArrowIcon />
@@ -109,6 +222,8 @@ function CertCard({ cert }) {
 }
 
 const Certifications = () => {
+  const [selectedCert, setSelectedCert] = useState(null);
+
   return (
     <section
       className="w-full px-6 md:px-16 lg:px-24 "
@@ -127,7 +242,7 @@ const Certifications = () => {
       {/* Cards grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto my-10">
         {certifications.map((cert, i) => (
-          <CertCard key={i} cert={cert} />
+          <CertCard key={i} cert={cert} onClick={setSelectedCert} />
         ))}
       </div>
 
@@ -135,6 +250,7 @@ const Certifications = () => {
       <div className="max-w-6xl mx-auto flex items-center justify-between pt-6 border-t border-gray-200">
         <div />
         <button
+
           className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-colors duration-300 cursor-pointer"
           style={{
             background: "#d4f53c",
@@ -146,6 +262,11 @@ const Certifications = () => {
           <CheckIcon />
         </button>
       </div>
+
+      {/* Modal */}
+      {selectedCert && (
+        <ImageModal cert={selectedCert} onClose={() => setSelectedCert(null)} />
+      )}
     </section>
   );
 };

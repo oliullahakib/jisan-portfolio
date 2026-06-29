@@ -14,7 +14,7 @@ const educationData = [
 const Education = () => {
   return (
     <section
-      className="w-full px-6 md:px-16 lg:px-24 py-20"
+      className="w-full px-6 md:px-16 lg:px-24 "
       style={{ background: "#faf9f6" }}
     >
       {/* Heading */}
