@@ -80,19 +80,19 @@ const Experience = () => {
           return (
             <div
               key={idx}
-              className="relative rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 group border border-black/5 bg-white shadow-xs hover:bg-[#d4f53c] hover:border-black hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:scale-[1.02] cursor-pointer"
+              className="relative rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 group border border-black/5 bg-white shadow-xs hover:bg-primary hover:text-white hover:border-black hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:scale-[1.02] cursor-pointer"
             >
               <div>
                 {/* Header: Logo, Company & Location */}
                 <div className="flex items-start gap-3 mb-4">
                   <Image src={exp.logo} alt={exp.company} width={50} height={50} />
                   <div>
-                    <h3 className="font-extrabold text-lg text-dark-charcoal leading-none">
+                    <h3 className="font-extrabold text-lg leading-none">
                       {exp.title}
                     </h3>
                     <div className="flex items-center gap-1 mt-1">
 
-                      <span className="text-xs text-gray-500 font-medium">
+                      <span className="text-xs  font-medium">
                         {exp.company}
                       </span>
                     </div>
@@ -100,7 +100,7 @@ const Experience = () => {
                 </div>
                 {/* Description */}
                 <p
-                  className="text-sm leading-relaxed mb-6 text-gray-500 group-hover:text-dark-charcoal/80 transition-all duration-300"
+                  className="text-sm leading-relaxed mb-6 transition-all duration-300"
                 >
                   {exp.description}
                 </p>
@@ -108,7 +108,7 @@ const Experience = () => {
 
               {/* Footer */}
               <div
-                className="flex items-center gap-2 p-2.5 rounded-2xl w-full border bg-gray-50 text-gray-600 border-gray-100 group-hover:bg-black/90 group-hover:text-white group-hover:border-transparent transition-all duration-300"
+                className="flex items-center gap-2 p-2.5 rounded-2xl w-full border bg-gray-50  border-gray-100 group-hover:bg-black/90 group-hover:text-white group-hover:border-transparent transition-all duration-300"
               >
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center bg-white shadow-sm group-hover:bg-white/10 group-hover:shadow-none transition-all duration-300"
