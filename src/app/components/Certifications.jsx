@@ -43,11 +43,11 @@ function ArrowIcon() {
   );
 }
 
-function CheckIcon() {
+function ChevronLeftIcon() {
   return (
     <svg
-      width="16"
-      height="16"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -55,8 +55,24 @@ function CheckIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-      <polyline points="22 4 12 14.01 9 11.01" />
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="9 18 15 12 9 6" />
     </svg>
   );
 }
@@ -100,7 +116,6 @@ function DownloadIcon() {
 
 /* ── Modal ── */
 function ImageModal({ cert, onClose }) {
-  // Close on Escape key
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === "Escape") onClose();
@@ -143,19 +158,19 @@ function ImageModal({ cert, onClose }) {
 
       {/* Image container */}
       <div
-        className="relative max-w-4xl w-[90vw] max-h-[85vh]"
+        className="relative max-w-4xl w-[90vw] max-h-[85vh] flex flex-col items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
         <img
           src={cert.image}
           alt={cert.title}
-          className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
+          className="w-full h-auto max-h-[75vh] object-contain rounded-xl"
         />
 
-        {/* Download button – bottom right */}
+        {/* Download button – bottom right inside container */}
         <button
           onClick={handleDownload}
-          className="absolute bottom-0 -right-20 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer transition-all duration-200 hover:scale-105"
+          className="absolute bottom-4 right-4 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer transition-all duration-200 hover:scale-105"
           style={{ background: "#ff7a1a", color: "#fff", border: "none" }}
           aria-label="Download image"
         >
@@ -171,7 +186,7 @@ function ImageModal({ cert, onClose }) {
 function CertCard({ cert, onClick }) {
   return (
     <div
-      className="relative group rounded-2xl overflow-hidden cursor-pointer"
+      className="relative group rounded-2xl overflow-hidden cursor-pointer h-full"
       style={{ background: "#fff" }}
       onClick={() => onClick(cert)}
     >
@@ -194,22 +209,22 @@ function CertCard({ cert, onClick }) {
       <div className="relative z-10 flex items-center justify-between px-4 py-4">
         <div>
           <h3
-            className="text-base font-bold"
+            className="text-base font-bold text-left"
             style={{ color: "#111" }}
           >
             {cert.title}
           </h3>
-          <p className="text-sm" style={{ color: "#888" }}>
+          <p className="text-sm text-left" style={{ color: "#888" }}>
             {cert.issuer}
           </p>
         </div>
-        {/* download button  */}
+        {/* download button */}
         <button
           onClick={(e) => {
             e.stopPropagation();
             downloadImage(cert);
           }}
-          className="flex items-center justify-center rounded-full transition-colors duration-300 cursor-pointer w-10 h-10 bg-primary/80"
+          className="flex items-center justify-center rounded-full transition-colors duration-300 cursor-pointer w-10 h-10 bg-primary/80 flex-shrink-0"
           aria-label={`Download ${cert.title}`}
         >
           <div className="rotate-135">
@@ -223,6 +238,40 @@ function CertCard({ cert, onClick }) {
 
 const Certifications = () => {
   const [selectedCert, setSelectedCert] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    const updateCount = () => {
+      // 1 on mobile (< 768px), 3 on tablet and desktop (>= 768px)
+      if (window.innerWidth < 768) {
+        setVisibleCount(1);
+      } else {
+        setVisibleCount(3);
+      }
+    };
+    updateCount();
+    window.addEventListener("resize", updateCount);
+    return () => window.removeEventListener("resize", updateCount);
+  }, []);
+
+  // Ensure index remains in bounds when resizing screen
+  useEffect(() => {
+    const maxIndex = Math.max(0, certifications.length - visibleCount);
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [visibleCount, currentIndex]);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => Math.min(prev + 1, certifications.length - visibleCount));
+  };
+
+  const maxIndex = Math.max(0, certifications.length - visibleCount);
 
   return (
     <section
@@ -239,28 +288,59 @@ const Certifications = () => {
         </h2>
       </div>
 
-      {/* Cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto my-10">
-        {certifications.map((cert, i) => (
-          <CertCard key={i} cert={cert} onClick={setSelectedCert} />
-        ))}
-      </div>
-
-      {/* Divider + See More */}
-      <div className="max-w-6xl mx-auto flex items-center justify-between pt-6 border-t border-gray-200">
-        <div />
-        <button
-
-          className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-colors duration-300 cursor-pointer"
+      {/* Cards slider */}
+      <div className="overflow-hidden max-w-6xl mx-auto my-10 px-1 py-4">
+        <div
+          className="flex transition-transform duration-500 ease-out"
           style={{
-            background: "#d4f53c",
-            color: "#111",
-            border: "none",
+            transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
           }}
         >
-          See More Certifications
-          <CheckIcon />
-        </button>
+          {certifications.map((cert, i) => (
+            <div
+              key={i}
+              className="px-4 flex-shrink-0"
+              style={{
+                width: `${100 / visibleCount}%`,
+              }}
+            >
+              <CertCard cert={cert} onClick={setSelectedCert} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Divider + Navigation arrows */}
+      <div className="max-w-6xl mx-auto flex items-center justify-between pt-6 border-t border-gray-200 pb-16">
+        <div />
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handlePrev}
+            disabled={currentIndex === 0}
+            className={`flex items-center justify-center rounded-full transition-all duration-300 w-12 h-12 border-2 border-black cursor-pointer shadow-[2px_2px_0px_rgba(0,0,0,1)] ${
+              currentIndex === 0
+                ? "opacity-30 cursor-not-allowed"
+                : "hover:bg-gray-100 hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-[1px_1px_0px_rgba(0,0,0,1)]"
+            }`}
+             style={{ background: "#FF9652", color: "#111" }}
+            aria-label="Previous certification"
+          >
+            <ChevronLeftIcon />
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={currentIndex >= maxIndex}
+            className={`flex items-center justify-center rounded-full transition-all duration-300 w-12 h-12 border-2 border-black cursor-pointer shadow-[2px_2px_0px_rgba(0,0,0,1)] ${
+              currentIndex >= maxIndex
+                ? "opacity-30 cursor-not-allowed"
+                : "hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-[1px_1px_0px_rgba(0,0,0,1)]"
+            }`}
+            style={{ background: "#FF9652", color: "#111" }}
+            aria-label="Next certification"
+          >
+            <ChevronRightIcon />
+          </button>
+        </div>
       </div>
 
       {/* Modal */}
