@@ -9,6 +9,7 @@ const navItems = [
   { id: "education", label: "Education", icon: EducationIcon },
   { id: "certifications", label: "Certifications", icon: CertIcon },
   { id: "experience", label: "Experience", icon: ExpIcon },
+  { id: "contact", label: "Contact", icon: ContactIcon },
 ];
 
 function HomeIcon() {
@@ -64,6 +65,14 @@ function ExpIcon() {
   );
 }
 
+function ContactIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  );
+}
+
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -83,34 +92,40 @@ export default function Navbar() {
     }
   };
 
-  // Active section tracking via IntersectionObserver
+  // Active section tracking via Scroll Position Offset
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-30% 0px -60% 0px", // Triggers when section occupies viewport center
-      threshold: 0,
-    };
+    const handleScrollEvent = () => {
+      const scrollPos = window.scrollY + 200; // offset of 200px to detect early
 
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+      // Bottom check
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 150
+      ) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // Find the current active section by checking element offsets
+      const sections = navItems
+        .map((item) => document.getElementById(item.id))
+        .filter(Boolean);
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (scrollPos >= section.offsetTop) {
+          setActiveSection(section.id);
+          break;
         }
-      });
+      }
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    // Run once on load
+    handleScrollEvent();
 
-    navItems.forEach((item) => {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
-    });
-
+    window.addEventListener("scroll", handleScrollEvent);
     return () => {
-      navItems.forEach((item) => {
-        const el = document.getElementById(item.id);
-        if (el) observer.unobserve(el);
-      });
+      window.removeEventListener("scroll", handleScrollEvent);
     };
   }, []);
 
