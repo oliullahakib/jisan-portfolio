@@ -178,7 +178,7 @@ const Skill = () => {
   return (
     <section
       className="w-full px-6 md:px-16 lg:px-24 py-16"
-      style={{ background: "#fbfbfc", fontFamily: "var(--font-sans, sans-serif)" }}
+      style={{ background: "#faf9f6", fontFamily: "var(--font-sans, sans-serif)" }}
     >
       {/* ── SKILLS HEADING ── */}
       <div className="flex flex-col items-center mb-10">
