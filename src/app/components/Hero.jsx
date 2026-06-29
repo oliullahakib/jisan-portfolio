@@ -101,9 +101,9 @@ export default function Hero() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </button>
-                <button className="px-5 py-2.5 rounded-full text-xs font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 cursor-pointer">
+                <a href="tel:+8801785853450" className="px-5 py-2.5 rounded-full text-xs font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 cursor-pointer">
                   Hire me
-                </button>
+                </a>
               </div>
             </div>
 

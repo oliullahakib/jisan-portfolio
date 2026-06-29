@@ -153,16 +153,15 @@ export default function About() {
             </div>
           </div>
 
-          {/* ════════════════════════════════════════
-              RIGHT — portrait with semicircle
-          ════════════════════════════════════════ */}
-        <Image 
-        src="/image/about/potrait.jpeg" 
-        width={400} 
-        height={560} 
-        alt="Jisan - Marketing Student" 
-        className="rounded-full w-md"
-        />
+          <div className="flex justify-center w-full lg:w-auto">
+            <Image 
+            src="/image/about/potrait.jpeg" 
+            width={400} 
+            height={560} 
+            alt="Jisan - Marketing Student" 
+            className="rounded-full w-xs lg:w-md"
+            />
+          </div>
 
         </div>
       </div>

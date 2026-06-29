@@ -28,7 +28,7 @@ const Education = () => {
       </div>
 
       {/* Timeline */}
-      <div className="max-w-[40vw] mx-auto flex flex-col">
+      <div className="max-w-[40vw] lg:mx-auto flex flex-col">
         {educationData.map((item, index) => (
           <div key={index} className="flex items-start gap-0">
             {/* Dot + vertical line */}
@@ -47,13 +47,7 @@ const Education = () => {
               {/* Vertical line */}
               {index < educationData.length - 1 && (
                 <span
-                  className="block"
-                  style={{
-                    width: 2,
-                    background: "#FF791B",
-                    flexGrow: 1,
-                    minHeight: 80,
-                  }}
+                  className="block bg-[#FF791B] grow w-1 min-h-20 h-40"
                 />
               )}
             </div>

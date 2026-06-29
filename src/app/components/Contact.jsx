@@ -1,6 +1,4 @@
-"use client";
 
-import { useState } from "react";
 
 function PhoneIcon() {
   return (
@@ -28,39 +26,8 @@ function MapPinIcon() {
   );
 }
 
-function SendIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="22" y1="2" x2="11" y2="13" />
-      <polygon points="22 2 15 22 11 13 2 9 22 2" />
-    </svg>
-  );
-}
-
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [status, setStatus] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus("sending");
-    
-    // Simulate API submission
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1200);
-  };
 
   return (
     <section
@@ -95,8 +62,8 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Call Me</h4>
-                <a href="tel:+8801700000000" className="text-sm font-extrabold text-dark-charcoal hover:text-primary transition-colors">
-                  +880 1700-000000
+                <a href="tel:+8801785853450" className="text-sm font-extrabold text-dark-charcoal hover:text-primary transition-colors">
+                  +880 1785-853450 
                 </a>
               </div>
             </div>
@@ -108,22 +75,9 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email Me</h4>
-                <a href="mailto:contact@jisan.com" className="text-sm font-extrabold text-dark-charcoal hover:text-primary transition-colors">
-                  contact@jisan.com
+                <a href="mailto:mkt.nahidahmed@gmail.com" className="text-sm font-extrabold text-dark-charcoal hover:text-primary transition-colors">
+                  mkt.nahidahmed@gmail.com 
                 </a>
-              </div>
-            </div>
-
-            {/* Location Card */}
-            <div className="flex items-center gap-4 p-5 rounded-2xl border border-black/5 bg-white shadow-xs hover:border-black hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-orange-50 shrink-0">
-                <MapPinIcon />
-              </div>
-              <div>
-                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Location</h4>
-                <span className="text-sm font-extrabold text-dark-charcoal">
-                  Kushtia, Bangladesh
-                </span>
               </div>
             </div>
           </div>
